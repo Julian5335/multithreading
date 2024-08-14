@@ -15,18 +15,9 @@ public class PowerCalculatingThread extends Thread {
 
   @Override
   public void run() {
-    result = pow(base, power);
-  }
-
-  private BigInteger pow(BigInteger base, BigInteger exponent) {
-    BigInteger result = BigInteger.ONE;
-    while (exponent.signum() > 0) {
-      if (exponent.testBit(0))
-        result = result.multiply(base);
-      base = base.multiply(base);
-      exponent = exponent.shiftRight(1);
+    for (BigInteger i = BigInteger.ZERO; i.compareTo(power) != 0; i = i.add(BigInteger.ONE)) {
+      result = result.multiply(base);
     }
-    return result;
   }
 
   public BigInteger getResult() {
